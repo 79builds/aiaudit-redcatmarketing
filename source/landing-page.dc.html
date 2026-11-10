@@ -1,0 +1,397 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Red Cat AI Visibility Audit</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&amp;family=Figtree:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#FFFFFF}
+a{color:#111111}a:hover{color:#CF202E}
+input:focus,textarea:focus{outline:2px solid #CF202E;outline-offset:1px}
+section[id]{scroll-margin-top:84px}
+html{scroll-behavior:smooth}
+@media (max-width:600px){
+.ai-row{gap:12px !important;padding:14px 16px !important}
+.ai-num{font-size:24px !important;width:20px !important}
+.ai-name{font-size:16px !important}
+.ai-meta{font-size:13px !important;white-space:nowrap}
+}
+.nav-toggle{display:none}
+@media (max-width:760px){
+.nav-toggle{display:inline-flex}
+.site-nav{display:none !important}
+.menu-open .site-nav{display:flex !important;flex-direction:column;align-items:stretch;width:100%;gap:0;padding:8px 0 4px}
+.menu-open .site-nav a{padding:12px 0;min-height:44px;box-sizing:border-box;display:flex;align-items:center}
+.menu-open .site-nav a.nav-cta{justify-content:center;margin-top:8px;padding:12px 20px}
+}
+.hero-bg{background-color:#111111;background-image:linear-gradient(90deg,rgba(17,17,17,0.94) 0%,rgba(17,17,17,0.82) 42%,rgba(17,17,17,0.25) 78%,rgba(17,17,17,0.1) 100%),url(/_blob/79fcdec79d7568266ce7f08752ee20aa);background-size:cover;background-position:70% center}
+@media (max-width:760px){.hero-bg{background-image:linear-gradient(180deg,rgba(17,17,17,0.82) 0%,rgba(17,17,17,0.9) 100%),url(/_blob/79fcdec79d7568266ce7f08752ee20aa)}}
+</style>
+</helmet>
+<div style="width: 100%; background: #FFFFFF; color: #111111; font-family: 'Figtree', system-ui, sans-serif; font-size: 17px; line-height: 1.6">
+
+<!-- NAV -->
+<header style="position: sticky; top: 0; z-index: 50; border-bottom: 1px solid #E6E2DC; background: #FFFFFF; box-shadow: 0 6px 20px -14px rgba(17,17,17,0.35)">
+<div class="nav-bar {{menuClass}}" style="max-width: 1240px; margin: 0 auto; padding: 18px 24px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px">
+<a href="#top" onClick="{{closeMenu}}" style="display: block; line-height: 0" aria-label="Red Cat Marketing home"><img src="/_blob/a352247ed3e7de09f2bf2f9d72dc8c1c" alt="Red Cat Marketing" style="height: 44px; width: auto"></a>
+<button type="button" class="nav-toggle" onClick="{{toggleMenu}}" aria-expanded="{{ariaExpanded}}" aria-controls="site-nav" aria-label="{{toggleLabel}}" style="align-items: center; justify-content: center; width: 48px; height: 48px; padding: 0; background: transparent; border: 1px solid #111111; border-radius: 2px; color: #111111; cursor: pointer">
+<sc-if value="{{menuOpen}}" hint-placeholder-val="{{ false }}"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></sc-if>
+<sc-if value="{{menuClosed}}" hint-placeholder-val="{{ true }}"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></sc-if>
+</button>
+<nav id="site-nav" class="site-nav" aria-label="Primary" style="display: flex; flex-wrap: wrap; align-items: center; gap: 28px; font-size: 15px; font-weight: 500">
+<a href="#values" onClick="{{closeMenu}}" style="text-decoration: none">What we believe</a>
+<a href="#audit" onClick="{{closeMenu}}" style="text-decoration: none">The audit</a>
+<a href="#how" onClick="{{closeMenu}}" style="text-decoration: none">How it works</a>
+<a href="#faq" onClick="{{closeMenu}}" style="text-decoration: none">FAQ</a>
+<a href="#get-audit" class="nav-cta" onClick="{{closeMenu}}" style="text-decoration: none; background: #111111; color: #FFFFFF; padding: 12px 20px; border-radius: 2px; font-weight: 600; min-height: 44px; box-sizing: border-box; display: inline-flex; align-items: center">Get your audit</a>
+</nav>
+</div>
+</header>
+
+<!-- HERO -->
+<section id="top" class="hero-bg" aria-label="Introduction">
+<div style="max-width: 1240px; margin: 0 auto; padding: 120px 24px 128px; min-height: 620px; box-sizing: border-box; display: flex; align-items: center">
+<div style="flex: 0 1 680px; min-width: 0">
+<div style="display: flex; align-items: center; gap: 14px; margin-bottom: 28px">
+<span style="display: block; width: 56px; height: 6px; background: {{accent}}; transform: skewY(-24deg)" aria-hidden="true"></span>
+<span style="font-size: 13px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #FFFFFF">The AI Visibility Audit</span>
+</div>
+<h1 style="margin: 0; font-family: 'Playfair Display', Georgia, serif; font-weight: 400; font-size: clamp(44px, 6vw, 80px); line-height: 1.02; letter-spacing: -0.02em; color: #FFFFFF">When someone asks AI who to hire, does it say <em style="font-style: italic; color: #CF202E">your</em> name?</h1>
+<p style="margin: 28px 0 0; font-size: 20px; line-height: 1.55; color: #E4E4E4; max-width: 560px">Your next customer is asking ChatGPT, Claude and Google's AI Overviews for a recommendation. Our AI Visibility Audit shows you exactly where your brand shows up, where your competitors are beating you, and what to fix first.</p>
+<div style="display: flex; flex-wrap: wrap; gap: 14px; margin-top: 40px">
+<a href="#get-audit" style="text-decoration: none; background: {{accent}}; color: #FFFFFF; padding: 16px 28px; border-radius: 2px; font-weight: 600; font-size: 17px; min-height: 52px; box-sizing: border-box; display: inline-flex; align-items: center">Score my brand audit</a>
+</div>
+<p style="margin: 24px 0 0; font-size: 14px; color: #C8C8C8">20+ years of strategy for global brands through to start-ups.</p>
+</div>
+</div>
+</section>
+
+<!-- SHIFT -->
+<section style="background: #111111; color: #FFFFFF">
+<div style="max-width: 1240px; margin: 0 auto; padding: 96px 24px; display: flex; flex-wrap: wrap; gap: 56px">
+<div style="flex: 1 1 420px; min-width: 0">
+<h2 style="margin: 0; font-family: 'Playfair Display', Georgia, serif; font-weight: 400; font-size: clamp(36px, 4.4vw, 56px); line-height: 1.08">New search, who dis?</h2>
+<p style="margin: 24px 0 0; font-size: 19px; color: #D6D6D6; max-width: 480px">Showing up on Google used to be the whole game. Now buyers skip the ten blue links and ask an AI to shortlist for them. If AI cannot find, understand and trust your brand, you are not on the list. And you will never see the deal you lost.</p>
+</div>
+<div style="flex: 1 1 520px; min-width: 0; display: flex; flex-wrap: wrap; gap: 20px; align-content: flex-start">
+<div style="flex: 1 1 240px; border: 1px solid #3A3A3A; border-radius: 4px; padding: 28px">
+<div style="font-size: 13px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #A8A8A8">SEO</div>
+<div style="margin-top: 12px; font-family: 'Playfair Display', serif; font-size: 26px; line-height: 1.2">Gets you found in the results.</div>
+<p style="margin: 14px 0 0; font-size: 16px; color: #C4C4C4">Still essential. It is the foundation everything else stands on.</p>
+</div>
+<div style="flex: 1 1 240px; border: 1.5px solid {{accent}}; border-radius: 4px; padding: 28px; background: #1A1A1A">
+<div style="font-size: 13px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #FFFFFF">AEO + GEO</div>
+<div style="margin-top: 12px; font-family: 'Playfair Display', serif; font-size: 26px; line-height: 1.2">Gets you named in the answer.</div>
+<p style="margin: 14px 0 0; font-size: 16px; color: #C4C4C4">Answer and generative engine optimization make your brand the one AI cites and recommends.</p>
+</div>
+</div>
+<div style="flex: 1 1 100%; min-width: 0; background: #F6F4F0; color: #111111; border-radius: 4px; padding: clamp(28px, 5vw, 64px); box-sizing: border-box; display: flex; flex-wrap: wrap; gap: 48px 64px; align-items: center">
+<div style="flex: 1 1 400px; min-width: 0">
+<div style="display: flex; align-items: center; gap: 14px">
+<span style="display: block; width: 40px; height: 5px; background: {{accent}}; transform: skewY(-24deg)" aria-hidden="true"></span>
+<span style="font-size: 13px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #111111">A real buyer question</span>
+</div>
+<p style="margin: 20px 0 0; font-family: 'Playfair Display', Georgia, serif; font-size: clamp(30px, 3.4vw, 46px); line-height: 1.18">“Who are the best industrial automation integrators for a mid-size manufacturer in Ontario?”</p>
+<p style="margin: 28px 0 0; font-size: 15px; color: #3D3D3D">Illustrative example. Your audit uses the questions your buyers actually ask.</p>
+</div>
+<div style="flex: 1 1 440px; min-width: 0">
+<div style="font-size: 13px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #5A5A5A">What AI answers</div>
+<div style="margin-top: 20px; display: flex; flex-direction: column; gap: 12px">
+<div class="ai-row" style="display: flex; align-items: center; gap: 20px; background: #FFFFFF; border: 1px solid #E6E2DC; border-radius: 4px; padding: 22px 28px">
+<span class="ai-num" style="font-family: 'Playfair Display', serif; font-size: 34px; line-height: 1; width: 32px; color: #111111">1</span>
+<span class="ai-name" style="font-size: 22px; font-weight: 500">Competitor A</span>
+<span class="ai-meta" style="margin-left: auto; font-size: 16px; color: #5A5A5A">cited 4 sources</span>
+</div>
+<div class="ai-row" style="display: flex; align-items: center; gap: 20px; background: #FFFFFF; border: 1px solid #E6E2DC; border-radius: 4px; padding: 22px 28px">
+<span class="ai-num" style="font-family: 'Playfair Display', serif; font-size: 34px; line-height: 1; width: 32px; color: #111111">2</span>
+<span class="ai-name" style="font-size: 22px; font-weight: 500">Competitor B</span>
+<span class="ai-meta" style="margin-left: auto; font-size: 16px; color: #5A5A5A">cited 2 sources</span>
+</div>
+<div class="ai-row" style="display: flex; align-items: center; gap: 20px; background: #FFFFFF; border: 2px dashed #CF202E; border-radius: 4px; padding: 22px 28px">
+<span class="ai-num" style="font-family: 'Playfair Display', serif; font-size: 34px; line-height: 1; width: 32px; color: #CF202E">?</span>
+<span class="ai-name" style="font-size: 22px; font-weight: 700">Your brand</span>
+<span class="ai-meta" style="margin-left: auto; font-size: 16px; color: #CF202E; font-weight: 700">not mentioned</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- VALUES -->
+<section id="values" style="background: #FFFFFF">
+<div style="max-width: 1240px; margin: 0 auto; padding: 112px 24px">
+<div style="display: flex; flex-wrap: wrap; gap: 40px; align-items: flex-end; justify-content: space-between">
+<div style="flex: 1 1 520px; min-width: 0">
+<div style="display: flex; align-items: center; gap: 14px; margin-bottom: 20px">
+<span style="display: block; width: 40px; height: 5px; background: {{accent}}; transform: skewY(-24deg)" aria-hidden="true"></span>
+<span style="font-size: 13px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase">What we believe</span>
+</div>
+<h2 style="margin: 0; font-family: 'Playfair Display', Georgia, serif; font-weight: 400; font-size: clamp(36px, 4.4vw, 60px); line-height: 1.06; letter-spacing: -0.01em">Strategy first. Results that turn heads. <em style="font-style: italic">Fun along the way.</em></h2>
+</div>
+<p style="flex: 1 1 360px; min-width: 0; margin: 0; font-size: 18px; color: #3D3D3D; max-width: 440px">For over 20 years, Red Cat Marketing has helped ambitious brands through their biggest transitions. AI search is just the latest one. Here is what has not changed.</p>
+</div>
+
+<div style="margin-top: 64px; display: flex; flex-wrap: wrap; border-top: 1px solid #111111">
+<div style="flex: 1 1 360px; min-width: 0; padding: 36px 32px 40px 0; border-bottom: 1px solid #E6E2DC; box-sizing: border-box">
+<div style="font-family: 'Playfair Display', serif; font-size: 18px; color: {{accent}}">01</div>
+<h3 style="margin: 10px 0 0; font-family: 'Playfair Display', serif; font-weight: 500; font-size: 30px; line-height: 1.15">Strategy before tactics</h3>
+<p style="margin: 14px 0 0; color: #3D3D3D">Every project starts with a foundation strong enough to scale. No random acts of marketing, no chasing shiny objects. Including AI.</p>
+</div>
+<div style="flex: 1 1 360px; min-width: 0; padding: 36px 32px 40px 0; border-bottom: 1px solid #E6E2DC; box-sizing: border-box">
+<div style="font-family: 'Playfair Display', serif; font-size: 18px; color: {{accent}}">02</div>
+<h3 style="margin: 10px 0 0; font-family: 'Playfair Display', serif; font-weight: 500; font-size: 30px; line-height: 1.15">Everything is figureoutable</h3>
+<p style="margin: 14px 0 0; color: #3D3D3D">New markets, rapid growth, a search landscape rewriting itself every quarter. We do not panic. We dig in until the path is clear.</p>
+</div>
+<div style="flex: 1 1 360px; min-width: 0; padding: 36px 32px 40px 0; border-bottom: 1px solid #E6E2DC; box-sizing: border-box">
+<div style="font-family: 'Playfair Display', serif; font-size: 18px; color: {{accent}}">03</div>
+<h3 style="margin: 10px 0 0; font-family: 'Playfair Display', serif; font-weight: 500; font-size: 30px; line-height: 1.15">Obsessive attention to detail</h3>
+<p style="margin: 14px 0 0; color: #3D3D3D">The difference is in the details, and we do not miss them. We surface the insights and opportunities other teams skim past.</p>
+</div>
+<div style="flex: 1 1 360px; min-width: 0; padding: 36px 32px 40px 0; border-bottom: 1px solid #E6E2DC; box-sizing: border-box">
+<div style="font-family: 'Playfair Display', serif; font-size: 18px; color: {{accent}}">04</div>
+<h3 style="margin: 10px 0 0; font-family: 'Playfair Display', serif; font-weight: 500; font-size: 30px; line-height: 1.15">Brand and demand, together</h3>
+<p style="margin: 14px 0 0; color: #3D3D3D">Our proprietary formula pairs brand building with lead generation, so you get short-term wins without trading away long-term growth.</p>
+</div>
+<div style="flex: 1 1 360px; min-width: 0; padding: 36px 32px 40px 0; border-bottom: 1px solid #E6E2DC; box-sizing: border-box">
+<div style="font-family: 'Playfair Display', serif; font-size: 18px; color: {{accent}}">05</div>
+<h3 style="margin: 10px 0 0; font-family: 'Playfair Display', serif; font-weight: 500; font-size: 30px; line-height: 1.15">Results you can brag about</h3>
+<p style="margin: 14px 0 0; color: #3D3D3D">Not “good enough”. Measurable wins, clear tracking, and growth your competitors wish they had.</p>
+</div>
+<div style="flex: 1 1 360px; min-width: 0; padding: 36px 32px 40px 0; border-bottom: 1px solid #E6E2DC; box-sizing: border-box">
+<div style="font-family: 'Playfair Display', serif; font-size: 18px; color: {{accent}}">06</div>
+<h3 style="margin: 10px 0 0; font-family: 'Playfair Display', serif; font-weight: 500; font-size: 30px; line-height: 1.15">Good work, good people, good laughs</h3>
+<p style="margin: 14px 0 0; color: #3D3D3D">We are here to do meaningful work that makes an impact. We are also here to have fun. Both show up in the results.</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- THE AUDIT -->
+<section id="audit" style="background: #F6F4F0">
+<div style="max-width: 1240px; margin: 0 auto; padding: 112px 24px">
+<div style="max-width: 780px">
+<div style="display: flex; align-items: center; gap: 14px; margin-bottom: 20px">
+<span style="display: block; width: 40px; height: 5px; background: {{accent}}; transform: skewY(-24deg)" aria-hidden="true"></span>
+<span style="font-size: 13px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase">The AI Visibility Audit</span>
+</div>
+<h2 style="margin: 0; font-family: 'Playfair Display', Georgia, serif; font-weight: 400; font-size: clamp(36px, 4.4vw, 60px); line-height: 1.06">Six deliverables. One clear picture of how AI sees you.</h2>
+<p style="margin: 24px 0 0; font-size: 19px; color: #3D3D3D">We score how AI sees your brand and how you stack up against your competitors. Then we give you the tools and the plan to close the gap.</p>
+</div>
+
+<figure style="margin: 56px 0 0">
+<img src="/_blob/2cb7e659b8b9c7aed230ce7f52887982" alt="Printed pages from a sample Red Cat Marketing AI Visibility Audit: the cover, the executive summary with a score of 41 out of 100, and the authority analysis comparing competitors" style="display: block; width: 100%; height: auto; border-radius: 4px; box-shadow: 0 30px 60px -30px rgba(17,17,17,0.35)">
+<figcaption style="margin-top: 14px; font-size: 14px; color: #5A5A5A">Pages from a sample audit report. Your report is built from your brand, your buyers and your competitors.</figcaption>
+</figure>
+
+<div style="margin-top: 56px; display: flex; flex-wrap: wrap; gap: 20px">
+<div style="flex: 1 1 340px; min-width: 0; background: #FFFFFF; border: 1px solid #E6E2DC; border-radius: 4px; padding: 32px">
+<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#111111" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.4 6.8 19.1l1-5.8L3.5 9.2l5.9-.9z"/></svg>
+<h3 style="margin: 18px 0 0; font-family: 'Playfair Display', serif; font-weight: 500; font-size: 26px">Authority score</h3>
+<p style="margin: 10px 0 0; color: #3D3D3D; font-size: 16px">How much AI trusts you, based on who credible third parties say you are: press, podcasts, partners, directories and reviews.</p>
+</div>
+<div style="flex: 1 1 340px; min-width: 0; background: #FFFFFF; border: 1px solid #E6E2DC; border-radius: 4px; padding: 32px">
+<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#111111" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/><path d="M9 11h.01M15 11h.01M9 14.5c1.6 1.4 4.4 1.4 6 0"/></svg>
+<h3 style="margin: 18px 0 0; font-family: 'Playfair Display', serif; font-weight: 500; font-size: 26px">Positioning sentiment</h3>
+<p style="margin: 10px 0 0; color: #3D3D3D; font-size: 16px">How AI describes you when it does mention you. We score the tone and the accuracy, and flag where the story is off.</p>
+</div>
+<div style="flex: 1 1 340px; min-width: 0; background: #FFFFFF; border: 1px solid #E6E2DC; border-radius: 4px; padding: 32px">
+<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#111111" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 6l-6 6 6 6M16 6l6 6-6 6"/></svg>
+<h3 style="margin: 18px 0 0; font-family: 'Playfair Display', serif; font-weight: 500; font-size: 26px">Technical accessibility</h3>
+<p style="margin: 10px 0 0; color: #3D3D3D; font-size: 16px">Can AI crawlers actually read you? Structure, schema, headings, hidden content and indexing settings.</p>
+</div>
+<div style="flex: 1 1 340px; min-width: 0; background: #FFFFFF; border: 1px solid #E6E2DC; border-radius: 4px; padding: 32px">
+<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#111111" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg>
+<h3 style="margin: 18px 0 0; font-family: 'Playfair Display', serif; font-weight: 500; font-size: 26px">Competitor analysis</h3>
+<p style="margin: 10px 0 0; color: #3D3D3D; font-size: 16px">You versus your three main competitors, side by side. See who AI recommends instead of you, and why.</p>
+</div>
+<div style="flex: 1 1 340px; min-width: 0; background: #FFFFFF; border: 1px solid #E6E2DC; border-radius: 4px; padding: 32px">
+<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#111111" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M8 13h8M8 17h5"/></svg>
+<h3 style="margin: 18px 0 0; font-family: 'Playfair Display', serif; font-weight: 500; font-size: 26px">Prompt starter sheet</h3>
+<p style="margin: 10px 0 0; color: #3D3D3D; font-size: 16px">The real questions your buyers ask AI, ready for your team to test and track your visibility month over month.</p>
+</div>
+<div style="flex: 1 1 340px; min-width: 0; background: #111111; color: #FFFFFF; border-radius: 4px; padding: 32px; display: flex; flex-direction: column">
+<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#CF202E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6h11M9 12h11M9 18h11M4 6l1 1 2-2M4 12l1 1 2-2M4 18l1 1 2-2"/></svg>
+<h3 style="margin: 18px 0 0; font-family: 'Playfair Display', serif; font-weight: 500; font-size: 26px">Top takeaways</h3>
+<p style="margin: 10px 0 0; color: #D6D6D6; font-size: 16px">A prioritized list of the moves that will improve your AI visibility most, quick wins first.</p>
+<a href="#get-audit" style="margin-top: auto; padding-top: 24px; color: #FFFFFF; font-weight: 600; text-decoration: underline; text-underline-offset: 4px">Request your audit</a>
+</div>
+</div>
+</div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="how" style="background: #FFFFFF">
+<div style="max-width: 1240px; margin: 0 auto; padding: 112px 24px">
+<h2 style="margin: 0; font-family: 'Playfair Display', Georgia, serif; font-weight: 400; font-size: clamp(36px, 4.4vw, 56px); line-height: 1.08; text-align: center">Three steps. No fluff.</h2>
+<div style="margin-top: 64px; display: flex; flex-wrap: wrap; gap: 48px">
+<div style="flex: 1 1 300px; min-width: 0">
+<div style="font-family: 'Playfair Display', serif; font-size: 18px; color: {{accent}}">01</div>
+<h3 style="margin: 10px 0 0; font-family: 'Playfair Display', serif; font-weight: 500; font-size: 30px; line-height: 1.15">Tell us where you stand</h3>
+<p style="margin: 10px 0 0; color: #3D3D3D">Share your website and your top 3 competitors. Two minutes, tops.</p>
+</div>
+<div style="flex: 1 1 300px; min-width: 0">
+<div style="font-family: 'Playfair Display', serif; font-size: 18px; color: {{accent}}">02</div>
+<h3 style="margin: 10px 0 0; font-family: 'Playfair Display', serif; font-weight: 500; font-size: 30px; line-height: 1.15">We ask AI what your buyers ask</h3>
+<p style="margin: 10px 0 0; color: #3D3D3D">We test the real questions your customers type into AI platforms and score your authority, positioning sentiment and technical accessibility.</p>
+</div>
+<div style="flex: 1 1 300px; min-width: 0">
+<div style="font-family: 'Playfair Display', serif; font-size: 18px; color: {{accent}}">03</div>
+<h3 style="margin: 10px 0 0; font-family: 'Playfair Display', serif; font-weight: 500; font-size: 30px; line-height: 1.15">We walk you through it</h3>
+<p style="margin: 10px 0 0; color: #3D3D3D">A strategist walks you through your scores, competitor analysis and top takeaways on a call.</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section style="background: #FFFFFF; border-top: 1px solid #E6E2DC">
+<div style="max-width: 1240px; margin: 0 auto; padding: 112px 24px">
+<div style="display: flex; align-items: center; gap: 14px; margin-bottom: 20px">
+<span style="display: block; width: 40px; height: 5px; background: {{accent}}; transform: skewY(-24deg)" aria-hidden="true"></span>
+<span style="font-size: 13px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase">What our clients say</span>
+</div>
+<h2 style="margin: 0; font-family: 'Playfair Display', Georgia, serif; font-weight: 400; font-size: clamp(36px, 4.4vw, 56px); line-height: 1.08">Results they <em style="font-style: italic">actually</em> brag about.</h2>
+
+<figure style="margin: 56px 0 0; display: flex; flex-wrap: wrap; gap: 32px 64px; align-items: flex-start; border-top: 1px solid #111111; padding-top: 48px">
+<div style="flex: 0 0 auto; font-family: 'Playfair Display', Georgia, serif; font-size: 160px; line-height: 0.7; color: {{accent}}" aria-hidden="true">“</div>
+<div style="flex: 1 1 560px; min-width: 0">
+<blockquote style="margin: 0; font-family: 'Playfair Display', Georgia, serif; font-size: clamp(26px, 2.8vw, 38px); line-height: 1.3">RCM’s AI visibility audit showed us how ChatGPT and other AI tools see our business, and where competitors were getting recommended instead of us. We came away with a clear plan we could act on right away.</blockquote>
+<figcaption style="margin-top: 28px; display: flex; align-items: center; gap: 14px; font-size: 15px">
+<span style="display: block; width: 28px; height: 3px; background: {{accent}}; transform: skewY(-24deg)" aria-hidden="true"></span>
+<span><b style="font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase">Nick</b><span style="color: #5A5A5A">, industrial automation components company</span></span>
+</figcaption>
+</div>
+</figure>
+
+<div style="margin-top: 56px; display: flex; flex-wrap: wrap; gap: 24px">
+<figure style="flex: 1 1 420px; min-width: 0; margin: 0; background: #111111; color: #FFFFFF; border-radius: 4px; padding: 40px; display: flex; flex-wrap: wrap; gap: 24px 36px; align-items: flex-start">
+<div style="flex: 0 0 auto">
+<div style="font-family: 'Playfair Display', Georgia, serif; font-size: 72px; line-height: 1">330%</div>
+<div style="margin-top: 8px; font-size: 13px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #C8C8C8">More engagement in 6 months</div>
+<span style="display: block; margin-top: 16px; width: 48px; height: 4px; background: {{accent}}; transform: skewY(-24deg)" aria-hidden="true"></span>
+</div>
+<div style="flex: 1 1 220px; min-width: 0">
+<blockquote style="margin: 0; font-family: 'Playfair Display', Georgia, serif; font-size: 21px; line-height: 1.45">“Red Cat Marketing understands these challenges and brought clarity and direction to our marketing efforts.”</blockquote>
+<figcaption style="margin-top: 18px; font-size: 14px"><b style="letter-spacing: 0.06em; text-transform: uppercase">David</b><span style="color: #C8C8C8">, Datastreamer</span></figcaption>
+</div>
+</figure>
+<figure style="flex: 1 1 420px; min-width: 0; margin: 0; background: #F6F4F0; border-radius: 4px; padding: 40px; display: flex; flex-direction: column">
+<div style="font-family: 'Playfair Display', Georgia, serif; font-size: 72px; line-height: 0.7; color: {{accent}}" aria-hidden="true">“</div>
+<blockquote style="margin: 12px 0 0; font-family: 'Playfair Display', Georgia, serif; font-size: 21px; line-height: 1.45">They truly listen to your thoughts and goals and clearly lay out what it will take to get there. Their data-driven approach is both easy to follow and easy to track.</blockquote>
+<figcaption style="margin-top: auto; padding-top: 18px; font-size: 14px"><b style="letter-spacing: 0.06em; text-transform: uppercase">Heather</b><span style="color: #5A5A5A">, Mazda Canada</span></figcaption>
+</figure>
+</div>
+</div>
+</section>
+
+<!-- FORM -->
+<section id="get-audit" style="background: #111111; color: #FFFFFF">
+<div style="max-width: 1240px; margin: 0 auto; padding: 112px 24px; display: flex; flex-wrap: wrap; gap: 64px">
+<div style="flex: 1 1 420px; min-width: 0">
+<span style="display: block; width: 72px; height: 8px; background: {{accent}}; transform: skewY(-24deg); margin-bottom: 36px" aria-hidden="true"></span>
+<h2 style="margin: 0; font-family: 'Playfair Display', Georgia, serif; font-weight: 400; font-size: clamp(40px, 5vw, 64px); line-height: 1.04">Find out if AI is sending your customers somewhere else.</h2>
+<p style="margin: 24px 0 0; font-size: 19px; color: #D6D6D6; max-width: 460px">For a one-time investment of <b style="color: #FFFFFF">$997</b>, your AI Visibility Audit includes your authority and positioning scores, a technical check, a three-competitor analysis, a prompt starter sheet and your top takeaways, delivered by a Red Cat Marketing strategist.</p>
+<ul style="margin: 32px 0 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 14px; font-size: 17px">
+<li style="display: flex; gap: 12px; align-items: flex-start"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#CF202E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 2px"><path d="M5 12l5 5L20 7"/></svg>One-time fee of $997, no retainer required</li>
+<li style="display: flex; gap: 12px; align-items: flex-start"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#CF202E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 2px"><path d="M5 12l5 5L20 7"/></svg>Results in 3 business days</li>
+<li style="display: flex; gap: 12px; align-items: flex-start"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#CF202E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 2px"><path d="M5 12l5 5L20 7"/></svg>Clear direction on what to prioritize first</li>
+</ul>
+</div>
+
+<form style="flex: 1 1 460px; min-width: 0; background: #FFFFFF; color: #111111; border-radius: 4px; padding: 40px; box-sizing: border-box; display: flex; flex-direction: column; gap: 20px" aria-label="Request your AI Visibility Audit">
+<div style="display: flex; flex-wrap: wrap; gap: 20px">
+<label style="flex: 1 1 200px; display: flex; flex-direction: column; gap: 8px; font-size: 14px; font-weight: 600">First name<input type="text" name="first_name" autocomplete="given-name" style="font: inherit; font-weight: 400; font-size: 16px; padding: 14px; border: 1px solid #BDB7AE; border-radius: 2px; min-height: 48px; box-sizing: border-box"></label>
+<label style="flex: 1 1 200px; display: flex; flex-direction: column; gap: 8px; font-size: 14px; font-weight: 600">Last name<input type="text" name="last_name" autocomplete="family-name" style="font: inherit; font-weight: 400; font-size: 16px; padding: 14px; border: 1px solid #BDB7AE; border-radius: 2px; min-height: 48px; box-sizing: border-box"></label>
+</div>
+<label style="display: flex; flex-direction: column; gap: 8px; font-size: 14px; font-weight: 600">Work email<input type="email" name="email" autocomplete="email" style="font: inherit; font-weight: 400; font-size: 16px; padding: 14px; border: 1px solid #BDB7AE; border-radius: 2px; min-height: 48px; box-sizing: border-box"></label>
+<label style="display: flex; flex-direction: column; gap: 8px; font-size: 14px; font-weight: 600">Company website<input type="url" name="website" placeholder="https://" style="font: inherit; font-weight: 400; font-size: 16px; padding: 14px; border: 1px solid #BDB7AE; border-radius: 2px; min-height: 48px; box-sizing: border-box"></label>
+<fieldset style="margin: 0; padding: 0; border: 0; min-width: 0; display: flex; flex-direction: column; gap: 10px">
+<legend style="padding: 0; margin-bottom: 8px; font-size: 14px; font-weight: 600">What geo-area do you serve?</legend>
+<div style="display: flex; flex-wrap: wrap; gap: 10px">
+<label style="flex: 1 1 110px; display: flex; align-items: center; gap: 10px; padding: 0 14px; min-height: 48px; border: 1px solid #BDB7AE; border-radius: 2px; font-size: 16px; cursor: pointer"><input type="radio" name="service_area" value="global" style="accent-color: #CF202E; width: 18px; height: 18px; margin: 0">Global</label>
+<label style="flex: 1 1 110px; display: flex; align-items: center; gap: 10px; padding: 0 14px; min-height: 48px; border: 1px solid #BDB7AE; border-radius: 2px; font-size: 16px; cursor: pointer"><input type="radio" name="service_area" value="national" style="accent-color: #CF202E; width: 18px; height: 18px; margin: 0">National</label>
+<label style="flex: 1 1 110px; display: flex; align-items: center; gap: 10px; padding: 0 14px; min-height: 48px; border: 1px solid #BDB7AE; border-radius: 2px; font-size: 16px; cursor: pointer"><input type="radio" name="service_area" value="regional" style="accent-color: #CF202E; width: 18px; height: 18px; margin: 0">Regional</label>
+<label style="flex: 1 1 110px; display: flex; align-items: center; gap: 10px; padding: 0 14px; min-height: 48px; border: 1px solid #BDB7AE; border-radius: 2px; font-size: 16px; cursor: pointer"><input type="radio" name="service_area" value="local" style="accent-color: #CF202E; width: 18px; height: 18px; margin: 0">Local</label>
+</div>
+<label style="display: flex; flex-direction: column; gap: 8px; font-size: 14px; font-weight: 600; margin-top: 6px">Help us make the audit more accurate, type in your main location(s):<input type="text" name="geo_area" placeholder="e.g. Canada and the US, Ontario, Peterborough" style="font: inherit; font-weight: 400; font-size: 16px; padding: 14px; border: 1px solid #BDB7AE; border-radius: 2px; min-height: 48px; box-sizing: border-box"></label>
+</fieldset>
+<label style="display: flex; flex-direction: column; gap: 8px; font-size: 14px; font-weight: 600">Your top 3 competitors' URLs<textarea name="competitors" rows="3" placeholder="One URL per line" style="font: inherit; font-weight: 400; font-size: 16px; padding: 14px; border: 1px solid #BDB7AE; border-radius: 2px; resize: vertical; box-sizing: border-box"></textarea></label>
+<label style="display: flex; flex-direction: column; gap: 8px; font-size: 14px; font-weight: 600">Is there anything else you want us to know?<textarea name="notes" rows="3" placeholder="Optional" style="font: inherit; font-weight: 400; font-size: 16px; padding: 14px; border: 1px solid #BDB7AE; border-radius: 2px; resize: vertical; box-sizing: border-box"></textarea></label>
+<button type="submit" style="font: inherit; font-size: 17px; font-weight: 600; background: {{accent}}; color: #FFFFFF; border: 0; border-radius: 2px; padding: 18px 24px; min-height: 56px; cursor: pointer">Get my AI Visibility Audit ($997)</button>
+<p style="margin: 0; font-size: 13px; color: #5A5A5A">We respect your inbox. Read our <a href="https://www.redcatmarketing.ca/legal">privacy policy</a>.</p>
+</form>
+</div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" style="background: #FFFFFF">
+<div style="max-width: 1240px; margin: 0 auto; padding: 112px 24px">
+<h2 style="margin: 0; font-family: 'Playfair Display', Georgia, serif; font-weight: 400; font-size: clamp(36px, 4.4vw, 52px); line-height: 1.08">FAQ</h2>
+<div style="margin-top: 48px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 440px), 1fr)); gap: 48px 56px">
+<div style="border-top: 1px solid #111111; padding-top: 24px">
+<h3 style="margin: 0; font-family: 'Playfair Display', serif; font-weight: 500; font-size: 26px; line-height: 1.2">What are AEO and GEO?</h3>
+<p style="margin: 12px 0 0; color: #3D3D3D">Answer engine optimization (AEO) and generative engine optimization (GEO) are the work of making your brand easy for AI tools to find, understand, trust and recommend when they generate answers.</p>
+</div>
+<div style="border-top: 1px solid #111111; padding-top: 24px">
+<h3 style="margin: 0; font-family: 'Playfair Display', serif; font-weight: 500; font-size: 26px; line-height: 1.2">Does this replace SEO?</h3>
+<p style="margin: 12px 0 0; color: #3D3D3D">No. GEO builds on SEO. A well-structured site with original, useful content wins on both. The audit shows where your SEO foundation helps you in AI search and where it falls short.</p>
+</div>
+<div style="border-top: 1px solid #111111; padding-top: 24px">
+<h3 style="margin: 0; font-family: 'Playfair Display', serif; font-weight: 500; font-size: 26px; line-height: 1.2">Who is the audit for?</h3>
+<p style="margin: 12px 0 0; color: #3D3D3D">Ambitious brands in a period of change: entering new markets, scaling quickly, or rethinking strategy. If your buyers research before they buy, AI is already part of their shortlist.</p>
+</div>
+<div style="border-top: 1px solid #111111; padding-top: 24px">
+<h3 style="margin: 0; font-family: 'Playfair Display', serif; font-weight: 500; font-size: 26px; line-height: 1.2">What does the audit cost?</h3>
+<p style="margin: 12px 0 0; color: #3D3D3D">The AI Visibility Audit is a one-time investment of $997. You keep every deliverable, and there is no retainer or ongoing commitment. If you want help putting the plan into action, we are happy to talk about that too.</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- FOOTER -->
+<footer style="background: #F6F4F0; border-top: 1px solid #E6E2DC">
+<div style="max-width: 1240px; margin: 0 auto; padding: 48px 24px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 24px">
+<img src="/_blob/a352247ed3e7de09f2bf2f9d72dc8c1c" alt="Red Cat Marketing" style="height: 40px; width: auto">
+<nav aria-label="Footer" style="display: flex; flex-wrap: wrap; gap: 24px; font-size: 15px">
+<a href="https://www.redcatmarketing.ca/approach">Our approach</a>
+<a href="https://www.redcatmarketing.ca/work">Our work</a>
+<a href="https://www.redcatmarketing.ca/blog">Blog</a>
+<a href="https://www.linkedin.com/company/redcatmarketing/">LinkedIn</a>
+<a href="https://www.redcatmarketing.ca/contact">Contact</a>
+</nav>
+<p style="margin: 0; font-size: 14px; color: #5A5A5A; flex-basis: 100%">© 2026 Red Cat Marketing Inc.</p>
+</div>
+</footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#CF202E","options":["#CF202E"]},"$preview":{"width":1440,"height":6000}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { menuOpen: false };
+  }
+  renderVals() {
+    const open = !!(this.state && this.state.menuOpen);
+    return {
+      accent: this.props.accent ?? '#CF202E',
+      menuOpen: open,
+      menuClosed: !open,
+      menuClass: open ? 'menu-open' : '',
+      ariaExpanded: open ? 'true' : 'false',
+      toggleLabel: open ? 'Close menu' : 'Open menu',
+      toggleMenu: () => this.setState({ menuOpen: !open }),
+      closeMenu: () => this.setState({ menuOpen: false })
+    };
+  }
+}
+</script>
+</body>
+</html>
