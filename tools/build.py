@@ -204,4 +204,5 @@ bots = ["GPTBot","ClaudeBot","PerplexityBot","Google-Extended","OAI-SearchBot","
 robots = "User-agent: *\nAllow: /\n\n" + "".join(f"User-agent: {b}\nAllow: /\n\n" for b in bots) + f"Sitemap: {SITE}sitemap.xml\n"
 (DIST/"robots.txt").write_text(robots)
 (DIST/"sitemap.xml").write_text(f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n  <url><loc>{SITE}</loc><lastmod>2026-11-10</lastmod></url>\n</urlset>\n')
+(DIST/"CNAME").write_text("aiaudit.redcatmarketing.ca\n")
 print("ok", logo_w, logo_h, rep_w, rep_h)
