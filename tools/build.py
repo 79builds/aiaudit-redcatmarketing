@@ -93,6 +93,7 @@ body = body.replace(form_open.group(0),
   '<div class="hp" aria-hidden="true"><label>Leave this box unchecked<input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off"></label></div>')
 for nm in ("first_name","last_name","email","website"):
     body = body.replace(f'name="{nm}"', f'name="{nm}" id="f_{nm}" required', 1)
+body = body.replace('placeholder="https://"', 'placeholder="yourcompany.com"')
 body = body.replace('type="url" name="website"', 'type="text" inputmode="url" name="website"')
 body = body.replace('name="geo_area"', 'name="geo_area" id="f_geo_area" autocomplete="off"')
 body = body.replace('name="competitors"', 'name="competitors" id="f_competitors"')
@@ -162,7 +163,7 @@ js = """
   var form=document.getElementById('audit-form'),er0=document.getElementById('form-error');
   form.addEventListener('submit',function(e){
     e.preventDefault();
-    var w=document.getElementById('f_website');if(w){var v=w.value.trim();if(v&&!/^https?:\\/\\//i.test(v))w.value='https://'+v;}
+    var w=document.getElementById('f_website');if(w){w.value=w.value.trim().replace(/^[a-z][a-z0-9+.-]*:\\/\\//i,'').replace(/^www\\./i,'').replace(/\\/+$/,'');}
     var b=form.querySelector('button[type=submit]'),t=b.textContent;b.disabled=true;b.textContent='Sending...';er0.classList.remove('show');
     fetch(form.action,{method:'POST',headers:{'Accept':'application/json'},body:new FormData(form)})
       .then(function(r){return r.json();})
