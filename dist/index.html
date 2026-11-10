@@ -493,7 +493,7 @@ html,body{max-width:100%;overflow-x:hidden}
     var b=form.querySelector('button[type=submit]'),t=b.textContent;b.disabled=true;b.textContent='Sending...';er0.classList.remove('show');
     fetch(form.action,{method:'POST',headers:{'Accept':'application/json'},body:new FormData(form)})
       .then(function(r){return r.json();})
-      .then(function(j){if(j&&j.success){window.location.href='thank-you.html';}else{throw new Error('fail');}})
+      .then(function(j){if(j&&j.success){window.location.href='https://buy.stripe.com/5kQ6oJ6HM8BofUQ87HcZa04';}else{throw new Error('fail');}})
       .catch(function(){b.disabled=false;b.textContent=t;er0.classList.add('show');er0.focus();});
   });
   if(/[?&]error=/.test(location.search)){var er=document.getElementById('form-error');if(er){er.classList.add('show');var f=document.getElementById('get-audit');if(f)f.scrollIntoView();er.focus();}}

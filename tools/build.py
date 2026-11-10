@@ -167,7 +167,7 @@ js = """
     var b=form.querySelector('button[type=submit]'),t=b.textContent;b.disabled=true;b.textContent='Sending...';er0.classList.remove('show');
     fetch(form.action,{method:'POST',headers:{'Accept':'application/json'},body:new FormData(form)})
       .then(function(r){return r.json();})
-      .then(function(j){if(j&&j.success){window.location.href='thank-you.html';}else{throw new Error('fail');}})
+      .then(function(j){if(j&&j.success){window.location.href='https://buy.stripe.com/5kQ6oJ6HM8BofUQ87HcZa04';}else{throw new Error('fail');}})
       .catch(function(){b.disabled=false;b.textContent=t;er0.classList.add('show');er0.focus();});
   });
   if(/[?&]error=/.test(location.search)){var er=document.getElementById('form-error');if(er){er.classList.add('show');var f=document.getElementById('get-audit');if(f)f.scrollIntoView();er.focus();}}
@@ -198,7 +198,8 @@ h1{{font-family:'Playfair Display',Georgia,serif;font-weight:400;font-size:clamp
 <h1>Thanks, your audit request is in.</h1>
 <p>A Red Cat Marketing strategist will review your details and be in touch with next steps. Your audit is delivered within 3 business days of kickoff.</p>
 <p>In the meantime, have a look at our <a href="https://www.redcatmarketing.ca/work">work</a>.</p>
-<a class="btn" href="/">Back to the audit page</a></main></body></html>
+<p>Haven\u2019t paid yet? Your $997 audit starts once payment is complete.</p>
+<a class="btn" href="https://buy.stripe.com/5kQ6oJ6HM8BofUQ87HcZa04">Complete payment</a></main></body></html>
 """
 (DIST/"thank-you.html").write_text(ty)
 
