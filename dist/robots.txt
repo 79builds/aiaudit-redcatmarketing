@@ -1,28 +1,40 @@
+# aiaudit.redcatmarketing.ca: all crawlers, including AI crawlers, are welcome on the audit page.
+# The thank-you page is a post-form confirmation and is not useful to index.
+
 User-agent: *
 Allow: /
+Disallow: /thank-you.html
 
 User-agent: GPTBot
 Allow: /
+Disallow: /thank-you.html
 
 User-agent: ClaudeBot
 Allow: /
+Disallow: /thank-you.html
 
 User-agent: PerplexityBot
 Allow: /
+Disallow: /thank-you.html
 
 User-agent: Google-Extended
 Allow: /
+Disallow: /thank-you.html
 
 User-agent: OAI-SearchBot
 Allow: /
+Disallow: /thank-you.html
 
 User-agent: ChatGPT-User
 Allow: /
+Disallow: /thank-you.html
 
 User-agent: anthropic-ai
 Allow: /
+Disallow: /thank-you.html
 
 User-agent: CCBot
 Allow: /
+Disallow: /thank-you.html
 
 Sitemap: https://aiaudit.redcatmarketing.ca/sitemap.xml

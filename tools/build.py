@@ -209,7 +209,41 @@ h1{{font-family:'Playfair Display',Georgia,serif;font-weight:400;font-size:clamp
 
 # ---------- robots / sitemap ----------
 bots = ["GPTBot","ClaudeBot","PerplexityBot","Google-Extended","OAI-SearchBot","ChatGPT-User","anthropic-ai","CCBot"]
-robots = "User-agent: *\nAllow: /\n\n" + "".join(f"User-agent: {b}\nAllow: /\n\n" for b in bots) + f"Sitemap: {SITE}sitemap.xml\n"
+dis = "Disallow: /thank-you.html\n"
+robots = "# aiaudit.redcatmarketing.ca: all crawlers, including AI crawlers, are welcome on the audit page.\n# The thank-you page is a post-form confirmation and is not useful to index.\n\nUser-agent: *\nAllow: /\n" + dis + "\n" + "".join(f"User-agent: {b}\nAllow: /\n{dis}\n" for b in bots) + f"Sitemap: {SITE}sitemap.xml\n"
+llms = f"""# AI Visibility Audit | Red Cat Marketing
+
+> A one-time $997 audit from Red Cat Marketing that shows how AI tools such as ChatGPT, Claude and Google's AI Overviews see a brand, how it compares with its three main competitors, and what to fix first. It builds a clearer picture of a brand's authority signals. It does not promise or guarantee AI recommendations.
+
+Red Cat Marketing is an agency with 20+ years of strategy work for brands from start-ups to global companies. The audit is delivered by a Red Cat Marketing strategist, with results in 3 business days and no retainer required.
+
+## The audit
+- [AI Visibility Audit page]({SITE}): what the audit covers, how it works, FAQ and the request form.
+
+## What the audit includes
+- Authority score: how much AI trusts a brand, based on what credible third parties say (press, podcasts, partners, directories, reviews).
+- Positioning sentiment: how AI describes the brand when it mentions it, scored for tone and accuracy.
+- Technical accessibility: whether AI crawlers can read the site (structure, schema, headings, hidden content, indexing settings).
+- Competitor analysis: the brand versus its three main competitors, side by side.
+- Prompt starter sheet: the questions buyers ask AI, for testing and tracking visibility month over month.
+- Top takeaways: a prioritized list of moves, quick wins first.
+
+## How it works
+1. Share your website and your top 3 competitors.
+2. Red Cat tests the real questions your customers ask AI platforms and scores authority, positioning sentiment and technical accessibility.
+3. A strategist walks you through the scores, competitor analysis and top takeaways on a call.
+
+## Common questions
+- What are AEO and GEO? Answer engine optimization and generative engine optimization: making a brand easy for AI tools to find, understand, trust and recommend.
+- Does this replace SEO? No. GEO builds on SEO, and the audit shows where an SEO foundation helps in AI search and where it falls short.
+- Who is it for? Ambitious brands in a period of change, such as entering new markets, scaling quickly or rethinking strategy.
+- What does it cost? A one-time investment of $997. You keep every deliverable, with no retainer or ongoing commitment.
+
+## About
+- [Red Cat Marketing](https://www.redcatmarketing.ca): the agency behind the audit.
+- [LinkedIn](https://www.linkedin.com/company/redcatmarketing/)
+"""
+(DIST/"llms.txt").write_text(llms)
 (DIST/"robots.txt").write_text(robots)
 (DIST/"sitemap.xml").write_text(f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n  <url><loc>{SITE}</loc><lastmod>2026-11-10</lastmod></url>\n</urlset>\n')
 (DIST/"CNAME").write_text("aiaudit.redcatmarketing.ca\n")
