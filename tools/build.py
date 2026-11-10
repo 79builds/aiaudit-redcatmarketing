@@ -145,6 +145,8 @@ head = f"""<!doctype html>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="{fonts}" rel="stylesheet">
 <style>{style}</style>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-6NK3CKRW5Z"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){{dataLayer.push(arguments);}}gtag('js',new Date());gtag('config','G-6NK3CKRW5Z');</script>
 <script type="application/ld+json">
 {ld}
 </script>
@@ -183,6 +185,8 @@ ty = f"""<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Thank you | Red Cat Marketing</title>
 <meta name="robots" content="noindex">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-6NK3CKRW5Z"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){{dataLayer.push(arguments);}}gtag('js',new Date());gtag('config','G-6NK3CKRW5Z');</script>
 <link rel="icon" href="favicon.ico" sizes="any"><link rel="icon" type="image/png" href="favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="{fonts}" rel="stylesheet">
