@@ -417,7 +417,7 @@ html,body{max-width:100%;overflow-x:hidden}
 <label style="flex: 1 1 200px; display: flex; flex-direction: column; gap: 8px; font-size: 14px; font-weight: 600">Last name<input type="text" name="last_name" id="f_last_name" required autocomplete="family-name" style="font: inherit; font-weight: 400; font-size: 16px; padding: 14px; border: 1px solid #BDB7AE; border-radius: 2px; min-height: 48px; box-sizing: border-box"></label>
 </div>
 <label style="display: flex; flex-direction: column; gap: 8px; font-size: 14px; font-weight: 600">Work email<input type="email" name="email" id="f_email" required autocomplete="email" style="font: inherit; font-weight: 400; font-size: 16px; padding: 14px; border: 1px solid #BDB7AE; border-radius: 2px; min-height: 48px; box-sizing: border-box"></label>
-<label style="display: flex; flex-direction: column; gap: 8px; font-size: 14px; font-weight: 600">Company website<input type="url" name="website" id="f_website" required autocomplete="url" placeholder="https://" style="font: inherit; font-weight: 400; font-size: 16px; padding: 14px; border: 1px solid #BDB7AE; border-radius: 2px; min-height: 48px; box-sizing: border-box"></label>
+<label style="display: flex; flex-direction: column; gap: 8px; font-size: 14px; font-weight: 600">Company website<input type="text" inputmode="url" name="website" id="f_website" required autocomplete="url" placeholder="https://" style="font: inherit; font-weight: 400; font-size: 16px; padding: 14px; border: 1px solid #BDB7AE; border-radius: 2px; min-height: 48px; box-sizing: border-box"></label>
 <fieldset style="margin: 0; padding: 0; border: 0; min-width: 0; display: flex; flex-direction: column; gap: 10px">
 <legend style="padding: 0; margin-bottom: 8px; font-size: 14px; font-weight: 600">What geo-area do you serve?</legend>
 <div style="display: flex; flex-wrap: wrap; gap: 10px">
@@ -489,6 +489,7 @@ html,body{max-width:100%;overflow-x:hidden}
   var form=document.getElementById('audit-form'),er0=document.getElementById('form-error');
   form.addEventListener('submit',function(e){
     e.preventDefault();
+    var w=document.getElementById('f_website');if(w){var v=w.value.trim();if(v&&!/^https?:\/\//i.test(v))w.value='https://'+v;}
     var b=form.querySelector('button[type=submit]'),t=b.textContent;b.disabled=true;b.textContent='Sending...';er0.classList.remove('show');
     fetch(form.action,{method:'POST',headers:{'Accept':'application/json'},body:new FormData(form)})
       .then(function(r){return r.json();})
