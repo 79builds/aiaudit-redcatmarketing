@@ -84,9 +84,13 @@ assert "/_blob/" not in body + style
 # form
 form_open = re.search(r'<form style="([^"]*)" aria-label="([^"]*)">', body)
 body = body.replace(form_open.group(0),
-  f'<form id="audit-form" action="send.php" method="post" style="{form_open.group(1)}" aria-label="{form_open.group(2)}">\n'
+  f'<form id="audit-form" action="https://api.web3forms.com/submit" method="post" style="{form_open.group(1)}" aria-label="{form_open.group(2)}">\n'
   '<div id="form-error" class="form-error" role="alert" tabindex="-1">Sorry, something went wrong sending your request. Please check the required fields and try again, or email us directly.</div>\n'
-  '<div class="hp" aria-hidden="true"><label>Leave this field empty<input type="text" name="website_url_confirm" tabindex="-1" autocomplete="off"></label></div>')
+  '<input type="hidden" name="access_key" value="f6058e88-d028-4f5f-b17e-cfb63106ab9c">\n'
+  '<input type="hidden" name="subject" value="New AI Visibility Audit request">\n'
+  '<input type="hidden" name="from_name" value="Red Cat AI Audit (aiaudit.redcatmarketing.ca)">\n'
+  '<input type="hidden" name="redirect" value="https://aiaudit.redcatmarketing.ca/thank-you.html">\n'
+  '<div class="hp" aria-hidden="true"><label>Leave this box unchecked<input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off"></label></div>')
 for nm in ("first_name","last_name","email","website"):
     body = body.replace(f'name="{nm}"', f'name="{nm}" id="f_{nm}" required', 1)
 body = body.replace('name="geo_area"', 'name="geo_area" id="f_geo_area" autocomplete="off"')
@@ -154,6 +158,15 @@ js = """
   document.querySelectorAll('#nav-bar a').forEach(function(a){a.addEventListener('click',function(){set(false);});});
   document.addEventListener('keydown',function(e){if(e.key==='Escape'&&bar.classList.contains('menu-open')){set(false);btn.focus();}});
   window.addEventListener('resize',function(){if(window.innerWidth>760)set(false);});
+  var form=document.getElementById('audit-form'),er0=document.getElementById('form-error');
+  form.addEventListener('submit',function(e){
+    e.preventDefault();
+    var b=form.querySelector('button[type=submit]'),t=b.textContent;b.disabled=true;b.textContent='Sending...';er0.classList.remove('show');
+    fetch(form.action,{method:'POST',headers:{'Accept':'application/json'},body:new FormData(form)})
+      .then(function(r){return r.json();})
+      .then(function(j){if(j&&j.success){window.location.href='thank-you.html';}else{throw new Error('fail');}})
+      .catch(function(){b.disabled=false;b.textContent=t;er0.classList.add('show');er0.focus();});
+  });
   if(/[?&]error=/.test(location.search)){var er=document.getElementById('form-error');if(er){er.classList.add('show');var f=document.getElementById('get-audit');if(f)f.scrollIntoView();er.focus();}}
 })();
 </script>
